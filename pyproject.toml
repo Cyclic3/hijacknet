@@ -27,9 +27,9 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Documentation = "https://github.com/unknown/hijacknet#readme"
-Issues = "https://github.com/unknown/hijacknet/issues"
-Source = "https://github.com/unknown/hijacknet"
+Documentation = "https://github.com/Cyclic3/hijacknet#readme"
+Issues = "https://github.com/Cyclic3/hijacknet/issues"
+Source = "https://github.com/Cyclic3/hijacknet"
 
 [tool.hatch.version]
 path = "src/hijacknet/__about__.py"

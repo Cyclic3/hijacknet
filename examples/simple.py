@@ -13,15 +13,15 @@ class SimpleServerHandler(hijacknet.HijackServerHandler):
     await server.stop()
 
   def check_lobby_complete(self, lobby: hijacknet.HijackLobby) -> bool:
-    print(len(lobby.members))
+    print(f"{len(lobby.members)} in {lobby.lobby_id}")
     return len(lobby.members) >= 2
 
   async def run_lobby(self, lobby: hijacknet.HijackLobby) -> None:
     await asyncio.gather(*[self.run_lobby_inner(lobby, i) for i in lobby])
-    print("done")
+    print(f"{lobby.lobby_id} done")
 
 async def client(name: str):
-  async with await hijacknet.HijackClient.connect(name, "test") as client:
+  async with await hijacknet.HijackClient.connect(name, "test lobby") as client:
     await client.send_message({"msg": "hi", "my_name": name, "your_names": client.others})
     print(await client.read_message())
 

@@ -7,7 +7,7 @@ import random
 
 class NoughtsAndCrossesServerHandler(hijacknet.HijackServerHandler):
   def check_lobby_complete(self, lobby: hijacknet.HijackLobby) -> bool:
-    print(len(lobby.members))
+    print(f"{len(lobby.members)} in {lobby.lobby_id}")
     return len(lobby.members) == 2
 
   async def run_lobby(self, lobby: hijacknet.HijackLobby) -> None:
@@ -34,14 +34,12 @@ class NoughtsAndCrossesServerHandler(hijacknet.HijackServerHandler):
 
 
     for player_no in itertools.cycle(range(2)):
-      print(board)
       side, client = players[player_no]
       opponent_player_no = (player_no + 1) % 2
 
       # Tell the client it's their turn
       await client.send_message(board)
       coords = await client.read_message()
-      print(coords)
       # Autolose on invalid move
       if board[coords[0]][coords[1]] != "_":
         await call_game(opponent_player_no, False)
